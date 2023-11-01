@@ -1,14 +1,18 @@
+#  docker run -p 11306:113306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=db-sd mysql:8.0.0
+#  sunny@sunny:~/ss/projects/JavaEE_EnterpriseJavaBeans$ docker compose up
+
 services:
 
   app-sd:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     depends_on:
       mysql-sd:
         condition: service_started
     ports:
-      - "18080:8080"  # http://localhost:18080/ejb/ShowCount
+      - "28080:8080"  # http://localhost:18080/ejb/ShowCount
+      - "29990:9990"  # http://localhost:18080/ejb/ShowCount
+    volumes:
+      - /home/sunny/ss/projects/JavaEE_EnterpriseJavaBeans/deployment:/opt/jboss/wildfly/standalone/deployments/
     networks:
       - sd
 
@@ -16,22 +20,17 @@ services:
     container_name: "mysql-sd"
     image: mysql:latest
     environment:
-#      - DB_NAME=${DB_NAME}
-#      - DB_USER=bm_dev
       MYSQL_DATABASE: db-sd
       MYSQL_USER: bm_dev
       MYSQL_PASSWORD: bm_dev
-      MYSQL_USER_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - mysql:/var/lib/mysql
       - mysql-dumps:/dump
     ports:
-      - "13306:3306"
+      - "23306:3306"
     networks:
       - sd
-
-
 volumes:
   mysql:
   mysql-dumps:
@@ -39,5 +38,3 @@ volumes:
 
 networks:
   sd:
-
-#  docker run -p 11306:113306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=db-sd mysql:8.0.0
