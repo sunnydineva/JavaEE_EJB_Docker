@@ -9,8 +9,8 @@ services:
       mysql-sd:
         condition: service_started
     ports:
-      - "28080:8080"  # http://localhost:18080/ejb/ShowCount
-      - "29990:9990"  # http://localhost:18080/ejb/ShowCount
+      - "28080:8080"  # http://localhost:28080/ejb/ShowCount
+      - "29990:9990"
     volumes:
       - /home/sunny/ss/projects/JavaEE_EnterpriseJavaBeans/deployment:/opt/jboss/wildfly/standalone/deployments/
     networks:

@@ -18,7 +18,12 @@ COPY assets/wildfly/mysql-connector-j-8.2.0.jar /opt/jboss/wildfly/modules/syste
 
 COPY assets/wildfly/standalone-full.xml /opt/jboss/wildfly/standalone/configuration/
 
+#see volume on docker-compose:
+#===========================
+RUN rm -rf /home/sunny/ss/projects/JavaEE_EnterpriseJavaBeans/deployment
+
 COPY target/ejb.war /opt/jboss/wildfly/standalone/deployments/
+#===========================
 
 RUN /opt/jboss/wildfly/bin/add-user.sh -m -u admin -p admin
 
