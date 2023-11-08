@@ -26,7 +26,7 @@ public class Airplane implements Serializable
 
     private Integer seatingCapacity;
 
-    @OneToOne(mappedBy = "airplane")
+    @OneToOne(mappedBy = "airplane") //??????!!!!
     private Flight flight;
 
     public Integer getId()

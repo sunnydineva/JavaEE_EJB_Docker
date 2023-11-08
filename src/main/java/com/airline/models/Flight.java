@@ -40,7 +40,7 @@ public class Flight implements Serializable
     @Temporal(TemporalType.TIMESTAMP)
     private Date flightTime;
 
-    @OneToOne
+    @OneToOne //???!!!
     @JoinColumn(name = "airplane_fk")
     private Airplane airplane;
 

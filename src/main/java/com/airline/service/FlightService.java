@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 @Stateless
 @LocalBean
 public class FlightService
@@ -44,6 +45,15 @@ public class FlightService
         List<Pilot> pilotList = f.getPilots();
         pilotList.add(p);
 //        f.setPilots(pilotList); //redundant
+
+        p.setFlightForPilot(f);
+    }
+
+    public List<Flight> getFlights()
+    {
+        TypedQuery<Flight> query = (TypedQuery<Flight>) em.createQuery("SELECT f FROM Flight f", Flight.class );
+        List<Flight> results = query.getResultList();
+        return results;
     }
     public Flight findByIdNamedQuery(int flightId)
     {
