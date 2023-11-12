@@ -1,8 +1,10 @@
 package com.airline.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,11 +42,11 @@ public class Flight implements Serializable
     @Temporal(TemporalType.TIMESTAMP)
     private Date flightTime;
 
-    @OneToOne //???!!!
+    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE}) //to add Flight only with the persist of Flight, the Airplane object will be persisted automatically
     @JoinColumn(name = "airplane_fk")
     private Airplane airplane;
 
-    @OneToMany(mappedBy = "flightForPilot")
+    @OneToMany(mappedBy = "flightForPilot", fetch = FetchType.EAGER)
     private List<Pilot> pilots;
 
     public Integer getId()

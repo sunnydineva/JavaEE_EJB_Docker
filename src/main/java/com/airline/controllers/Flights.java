@@ -25,6 +25,9 @@ public class Flights extends HttpServlet
         PrintWriter out = response.getWriter();
         out.println("List of flights will be displayed here...");
 
+        RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/flights_list.jsp");
+        view.forward(request, response);
+
     }
 
     @Override

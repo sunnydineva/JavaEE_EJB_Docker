@@ -27,7 +27,7 @@ public class FlightService
     public void addFlight(Flight f, Airplane a)
     {
         em.persist(f);
-        em.persist(a);
+//        em.persist(a); //propagated and cascaded from flight and saved automatically
     }
 
     public void addPilotToFlight(String pilotId, String flightId)
