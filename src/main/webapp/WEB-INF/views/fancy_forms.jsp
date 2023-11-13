@@ -241,15 +241,13 @@
 
     </form>
 
-    <h1>Add flight to passenger<span style="font-size: 16px; vertical-align: middle;">(give a passenger another flight ticket to his/her collection of flight tickets</span> </h1>
+    <h1>Add flight to passenger<span style="font-size: 16px; vertical-align: middle;"> (give a passenger another flight ticket to his/her collection of flight tickets</span> </h1>
 
     <form method="POST" action="">
 
         Add a ticket for a flight with an id of
 
         <input name="fid" type="text"/>
-
-        <br /><br />
 
         to a passenger with an id of
 

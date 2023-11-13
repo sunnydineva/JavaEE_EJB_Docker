@@ -20,7 +20,7 @@ COPY assets/wildfly/standalone-full.xml /opt/jboss/wildfly/standalone/configurat
 
 #see volume on docker-compose:
 #===========================
-RUN rm -rf /home/sunny/ss/projects/JavaEE_EnterpriseJavaBeans/deployment
+RUN rm -rf deployment
 
 COPY target/ejb.war /opt/jboss/wildfly/standalone/deployments/
 #===========================

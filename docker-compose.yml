@@ -1,16 +1,22 @@
 #  docker run -p 11306:113306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=db-sd mysql:8.0.0
+#  sunny@sunny:~/ss/projects/JavaEE_EnterpriseJavaBeans$ docker build -t javaee:SNAPSHOT-1.0.0 .
+#  sunny@sunny:~/ss/projects/JavaEE_EnterpriseJavaBeans$ docker build --no-cache -t javaee:SNAPSHOT-1.0.0 .
 #  sunny@sunny:~/ss/projects/JavaEE_EnterpriseJavaBeans$ docker compose up
+
 
 services:
 
   app-sd:
     build: .
+#    image: javaee:SNAPSHOT-1.0.0
+#    build: javaee:SNAPSHOT-1.0.0
     depends_on:
       mysql-sd:
         condition: service_started
     ports:
       - "28080:8080"  # http://localhost:28080/ejb/ShowCount
       - "29990:9990"
+      - "28787:8787"
     volumes:
       - /home/sunny/ss/projects/JavaEE_EnterpriseJavaBeans/deployment:/opt/jboss/wildfly/standalone/deployments/
     networks:
