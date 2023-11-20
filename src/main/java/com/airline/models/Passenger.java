@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,6 +15,7 @@ import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Entity implementation class for Entity: Passenger
@@ -45,6 +47,9 @@ public class Passenger implements Serializable
     private Gender gender;
     @Enumerated(EnumType.STRING)
     private FlightClass flightClass;
+
+    @ManyToMany(mappedBy = "passengers")
+    private List<Flight> flights; //the flight tickets the passenger has
 
     public Long getId()
     {
@@ -99,5 +104,29 @@ public class Passenger implements Serializable
     public void setFlightClass(FlightClass flightClass)
     {
         this.flightClass = flightClass;
+    }
+
+     public List<Flight> getFlights()
+    {
+        return flights;
+    }
+
+    public void setFlights(List<Flight> flights)
+    {
+        this.flights = flights;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Passenger{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dob=" + dob +
+                ", gender=" + gender +
+                ", flightClass=" + flightClass +
+                ", flights=" + flights +
+                '}';
     }
 }

@@ -9,17 +9,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@NamedQuery(name="Flight.findById", query = "SELECT f from Flight f where f.id = :flightID")
+@NamedQuery(name = "Flight.findById", query = "SELECT f from Flight f where f.id = :flightID")
 @Entity
 @Table(name = "flights")
 public class Flight implements Serializable
@@ -42,12 +45,20 @@ public class Flight implements Serializable
     @Temporal(TemporalType.TIMESTAMP)
     private Date flightTime;
 
-    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE}) //to add Flight only with the persist of Flight, the Airplane object will be persisted automatically
+    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+    //to add Flight only with the persist of Flight, the Airplane object will be persisted automatically
     @JoinColumn(name = "airplane_fk")
     private Airplane airplane;
 
     @OneToMany(mappedBy = "flightForPilot", fetch = FetchType.EAGER)
     private List<Pilot> pilots;
+
+    //@ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany()
+    @JoinTable(name = "f_p_join", //alb names
+            joinColumns = @JoinColumn(name = "flight_fk"),
+            inverseJoinColumns = @JoinColumn(name = "passenger_fk"))
+    private List<Passenger> passengers;
 
     public Integer getId()
     {
@@ -117,6 +128,27 @@ public class Flight implements Serializable
     public void setPilots(List<Pilot> pilots)
     {
         this.pilots = pilots;
+    }
+
+    public Airplane getAirplane()
+    {
+        return airplane;
+    }
+
+    public void setAirplane(Airplane airplane)
+    {
+        this.airplane = airplane;
+    }
+
+
+    public List<Passenger> getPassengers()
+    {
+        return passengers;
+    }
+
+    public void setPassengers(List<Passenger> passengers)
+    {
+        this.passengers = passengers;
     }
 
     @Override

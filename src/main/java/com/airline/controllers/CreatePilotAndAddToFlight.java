@@ -36,7 +36,7 @@ public class CreatePilotAndAddToFlight extends HttpServlet
         Pilot p = new Pilot();
 
         p.setFirstName(fName);
-        p.setFirstName(lName);
+        p.setLastName(lName);
         p.setPilotLicense(license);
         p.setPilotRank(PilotRank.valueOf(rank));
 

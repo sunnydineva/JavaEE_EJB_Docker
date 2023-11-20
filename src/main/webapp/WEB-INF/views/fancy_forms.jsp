@@ -19,7 +19,7 @@
 
     </style>
 
-    <title>Title</title>
+    <title>Fancy forms</title>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 
         <select name = "from_destination">
             <option value = "San_Francisco">San Francisco</option>
-            <option value = "Los Angeles">Los Angeles</option>
+            <option value = "Los_Angeles">Los Angeles</option>
             <option value = "New_York">New York</option>
             <option value = "London">London</option>
             <option value = "Paris">Paris</option>
@@ -142,7 +142,9 @@
     </form>
 
     <h1>Add pilot to flight</h1>
-    <form method="POST" action="">
+
+    <form method="POST" action="CreatePilotAndAddToFlight
+">
 
         First name:
 
@@ -186,7 +188,7 @@
 
     <h1>Add Passenger</h1>
 
-    <form method="POST" action="">
+    <form method="POST" action="AddPassenger">
 
         First name:
 
@@ -200,7 +202,7 @@
 
         <br /><br />
 
-        Date of birth:
+        Date of birth mm/dd/yyy:
 
         <input name="dob" type="text"/>
 
@@ -223,7 +225,7 @@
 
     <h1>Add passenger to flight</h1>
 
-    <form method="POST" action="">
+    <form method="POST" action="AddPassengerToFlight">
 
         Add a passenger with an id of
 
@@ -243,7 +245,7 @@
 
     <h1>Add flight to passenger<span style="font-size: 16px; vertical-align: middle;"> (give a passenger another flight ticket to his/her collection of flight tickets</span> </h1>
 
-    <form method="POST" action="">
+    <form method="POST" action="AddFlightTicketToPassenger">
 
         Add a ticket for a flight with an id of
 

@@ -1,6 +1,8 @@
 <%@ page import="com.airline.models.Flight" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.airline.models.Pilot" %>
+<%@ page import="com.airline.models.Passenger" %>
+<%@ page import="org.hibernate.Hibernate" %>
 <%--
   Created by IntelliJ IDEA.
   User: sunny
@@ -102,7 +104,28 @@
         </tr>
 
         <tr>
-            <td colspan="8">No passengers on this flight yet</td>
+                  <td colspan="9">
+                <%
+                    if ((flightList.get(i).getPassengers() != null) && !flightList.get(i).getPassengers().isEmpty()) {
+                        List<Passenger> passengers = (List<Passenger>) flightList.get(i).getPassengers();
+
+                        for (int k = 0; k < passengers.size(); k++)
+                        {
+                %>
+                    <%= k+1 %>) <%=passengers.get(k).getFirstName()%>   <%=passengers.get(k).getLastName()%> <br />
+
+                <%
+                        } //for
+                    } //if
+                    else
+                        {
+                %>
+                    No passengers on this flight yet.
+                <%
+                        } //else
+                %>
+
+            </td>
         </tr>
 
         <%

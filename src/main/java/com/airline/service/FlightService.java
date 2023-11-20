@@ -2,6 +2,7 @@ package com.airline.service;
 
 import com.airline.models.Airplane;
 import com.airline.models.Flight;
+import com.airline.models.Passenger;
 import com.airline.models.Pilot;
 
 import javax.ejb.LocalBean;
@@ -9,6 +10,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @SuppressWarnings("ALL")
@@ -47,6 +51,43 @@ public class FlightService
 //        f.setPilots(pilotList); //redundant
 
         p.setFlightForPilot(f);
+    }
+
+    public void addPassengerToFlight(String passengerId, String flightId)
+    {
+        //Getting the passenger by id using CriteriaQuery, not NamedQuery or TypedQuery
+
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+
+        CriteriaQuery<Passenger> cqPassenger = builder.createQuery(Passenger.class);
+
+        Root<Passenger> pRoot = cqPassenger.from(Passenger.class);
+
+        cqPassenger.select(pRoot).where(builder.equal(pRoot.get("id").as(Integer.class), passengerId));
+
+//        TypedQuery<Passenger> typedQuery = em.createQuery(cqPassenger);
+//        Passenger p = typedQuery.getSingleResult();
+        Passenger p = em.createQuery(cqPassenger).getSingleResult(); //short
+
+        //Getting flight by id
+        builder = em.getCriteriaBuilder();
+
+        CriteriaQuery<Flight> cqFlight = builder.createQuery(Flight.class);
+
+        Root<Flight> fRoot = cqFlight.from(Flight.class);
+
+        cqFlight.select(fRoot).where(builder.equal(fRoot.get("id").as(Integer.class), flightId));
+
+        Flight f = em.createQuery(cqFlight).getSingleResult();
+
+        //Associate the passeger with the flight
+        List<Passenger> pList = f.getPassengers();
+        pList.add(p);
+
+        f.setPassengers(pList);
+
+        p.getFlights().add(f);
+
     }
 
     public List<Flight> getFlights()

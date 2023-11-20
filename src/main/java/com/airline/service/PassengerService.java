@@ -32,6 +32,10 @@ public class PassengerService
         em.persist(p); //add row into the table passengers
     }
 
+    public void addFlightTicketToPassenger(String flightId, String passengerId)
+    {
+
+    }
     public List<Passenger> getPassengers()
     {
         TypedQuery query = em.createQuery("SELECT p from Passenger p", Passenger.class);
