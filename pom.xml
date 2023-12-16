@@ -56,13 +56,25 @@
     </dependencies>
 
     <build>
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-war-plugin</artifactId>-->
-<!--                <version>3.3.2</version>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
+        <plugins>
+            <plugin>
+<!--                1) Error injecting constructor, java.lang.ExceptionInInitializerError: Cannot access defaults field of Properties-->
+<!--                at org.apache.maven.plugin.war.WarMojo.<init>(Unknown Source)-->
+<!--                while locating org.apache.maven.plugin.war.WarMojo-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+            </plugin>
+            <plugin>
+<!--                [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plug-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
             <finalName>ejb</finalName>
     </build>
 

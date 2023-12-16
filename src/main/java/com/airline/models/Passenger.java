@@ -11,11 +11,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * Entity implementation class for Entity: Passenger
+ */
+
 @Entity
 @Table(name = "passengers")
+@XmlRootElement //for MediaType.APPLICATION.XML
 public class Passenger implements Serializable
 {
     @Transient //to not represent a column of our DB
