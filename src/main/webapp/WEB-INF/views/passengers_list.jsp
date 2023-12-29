@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.airline.controllers.Passengers" %>
-<%@ page import="com.airline.models.Passenger" %><%--
+<%@ page import="com.airline.models.Passenger" %>
+<%@ page import="com.airline.models.Flight" %><%--
   Created by IntelliJ IDEA.
   User: sunny
   Date: 11.11.23 г.
@@ -43,12 +43,31 @@
             </tr>
 
             <tr>
-                <td colspan="4">No flight tickets yet</td>
+                <td colspan="4">
+                    <%
+                        if(!pList.get(i).getFlights().isEmpty())
+                        {
+                            List<Flight> fList = (List<Flight>) pList.get(i).getFlights();
+
+                            for(int k =0; k< fList.size(); k++)
+                            {
+                    %>
+                        <%= k+1 %>) <%= fList.get(k).getFlightOrigin()%> to <%= fList.get(k).getFlightDestination()%> @ <%=fList.get(k).getFlightTime()%> <br />
+
+                    <%
+                            } //for
+                        } else {
+                     %>
+                        No flight tickets yet.
+                    <%
+                        }
+                    %>
+                </td>
             </tr>
 
         <%
             }
-        %>
+//for        %>
 
     </table>
 
