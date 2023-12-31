@@ -36,7 +36,7 @@ public class Passenger implements Serializable
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Column
     private String firstName;
     @Column
@@ -51,7 +51,7 @@ public class Passenger implements Serializable
     @ManyToMany(mappedBy = "passengers")
     private List<Flight> flights; //the flight tickets the passenger has
 
-    public Long getId()
+    public Integer getId()
     {
         return id;
     }
