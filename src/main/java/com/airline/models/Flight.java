@@ -48,7 +48,7 @@ public class Flight implements Serializable
     @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
     //to add Flight only with the persist of Flight, the Airplane object will be persisted automatically
     @JoinColumn(name = "airplane_fk")
-    private Airplane airplane;
+    private Airplane airplaneDetails;
 
     @OneToMany(mappedBy = "flightForPilot", fetch = FetchType.EAGER)
     private List<Pilot> pilots;
@@ -112,12 +112,12 @@ public class Flight implements Serializable
 
     public Airplane getAirplaneDetails()
     {
-        return airplane;
+        return airplaneDetails;
     }
 
     public void setAirplaneDetails(Airplane airplaneDetails)
     {
-        this.airplane = airplaneDetails;
+        this.airplaneDetails = airplaneDetails;
     }
 
     public List<Pilot> getPilots()
@@ -132,12 +132,12 @@ public class Flight implements Serializable
 
     public Airplane getAirplane()
     {
-        return airplane;
+        return airplaneDetails;
     }
 
     public void setAirplane(Airplane airplane)
     {
-        this.airplane = airplane;
+        this.airplaneDetails = airplane;
     }
 
 
@@ -160,7 +160,7 @@ public class Flight implements Serializable
                 ", flightDestination=" + flightDestination +
                 ", price=" + price +
                 ", flightTime=" + flightTime +
-                ", airplane=" + airplane +
+                ", airplaneDetails=" + airplaneDetails +
                 ", pilots=" + pilots +
                 '}';
     }

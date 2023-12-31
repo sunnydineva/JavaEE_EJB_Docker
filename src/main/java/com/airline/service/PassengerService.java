@@ -6,6 +6,7 @@ import com.airline.models.Passenger;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -75,6 +76,32 @@ public class PassengerService
         TypedQuery query = em.createQuery("SELECT p from Passenger p", Passenger.class);
         List resultList = query.getResultList();
         return resultList;
+    }
+
+    public Passenger getPassenger(Integer passengerId)
+    {
+        //getthing the passenger by id
+
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+
+        CriteriaQuery<Passenger> cqPassenger = builder.createQuery(Passenger.class);
+
+        Root<Passenger> pRoot = cqPassenger.from(Passenger.class);
+
+        cqPassenger.select(pRoot).where(builder.equal(pRoot.get("id").as(Integer.class), passengerId));
+
+        TypedQuery<Passenger> passengerTypedQuery = em.createQuery(cqPassenger);
+
+        Passenger p = null;
+
+        try
+        {
+            p = passengerTypedQuery.getSingleResult();
+        } catch (NoResultException e)
+        {
+            return null;
+        }
+        return p;
     }
 
 }

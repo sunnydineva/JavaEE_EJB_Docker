@@ -35,7 +35,7 @@ public class FlightWebService {
     // <= te be managed automatically by the container, in case JAX-RS
 
     @GET()
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON) //localhost:8080/ejb/airlineservices/rest/
     public List<Flight> getFlights()
     {
         List<Flight> fList = fs.getFlights();
