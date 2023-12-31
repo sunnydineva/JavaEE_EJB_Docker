@@ -30,9 +30,10 @@ public class PassengerService
     @PersistenceContext(unitName = "airline_persistence_unit") //  from persistence.xml: <persistence-unit name="airline_persistence_unit">
     EntityManager em; //allows us to communicate with the DB
 
-    public void addPassenger(Passenger p) //called from the addPassenger servlet
+    public Passenger addPassenger(Passenger p) //called from the addPassenger servlet
     {
         em.persist(p); //add row into the table passengers
+        return p;
     }
 
     public void addFlightTicketToPassenger(String flightId, String passengerId)
@@ -100,6 +101,24 @@ public class PassengerService
         } catch (NoResultException e)
         {
             return null;
+        }
+        return p;
+    }
+
+    public Passenger updatePassenger(Integer passengerId, Passenger pUpdated)
+    {
+        Passenger p = em.find(Passenger.class, passengerId);
+
+        if (p == null)
+        {
+            return null;
+        }
+        if (pUpdated.getFirstName() != null)
+        {
+            p.setFirstName(pUpdated.getFirstName());
+            p.setLastName(pUpdated.getLastName());
+            p.setDob(pUpdated.getDob());
+            p.setGender(pUpdated.getGender());
         }
         return p;
     }
