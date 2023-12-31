@@ -15,8 +15,9 @@ services:
         condition: service_started
     ports:
       - "28080:8080"  # http://localhost:28080/ejb/ShowCount
-      - "29990:9990"
-      - "28787:8787"
+      - "29990:9990"  # http://0.0.0.0:29990/management admin admin
+      - "38787:8787"  # Remote JVM
+      - "25005:5005"
     volumes:
       - /home/sunny/ss/projects/JavaEE_EnterpriseJavaBeans/deployment:/opt/jboss/wildfly/standalone/deployments/
     networks:
