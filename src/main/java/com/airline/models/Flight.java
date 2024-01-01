@@ -17,7 +17,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -129,17 +128,6 @@ public class Flight implements Serializable
     {
         this.pilots = pilots;
     }
-
-    public Airplane getAirplane()
-    {
-        return airplaneDetails;
-    }
-
-    public void setAirplane(Airplane airplane)
-    {
-        this.airplaneDetails = airplane;
-    }
-
 
     public List<Passenger> getPassengers()
     {

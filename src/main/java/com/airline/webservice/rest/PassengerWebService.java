@@ -1,5 +1,7 @@
 package com.airline.webservice.rest;
 
+import com.airline.dto.PassengerMapper;
+import com.airline.dto.PassengerResponseDto;
 import com.airline.models.Passenger;
 import com.airline.service.PassengerService;
 
@@ -21,6 +23,7 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Path("/passengers")
 public class PassengerWebService
@@ -46,11 +49,12 @@ public class PassengerWebService
 
     @GET()
     @Produces(MediaType.APPLICATION_XML) //needs Jax-B in Entity
-    public List<Passenger> getPassengers()
+    public List<PassengerResponseDto> getPassengers()
     {
-        List<Passenger> pList = ps.getPassengers();
 
-        return pList;
+        return ps.getPassengers().stream()
+                .map(PassengerMapper :: toDto)
+                .collect(Collectors.toList());
     }
 
     @GET

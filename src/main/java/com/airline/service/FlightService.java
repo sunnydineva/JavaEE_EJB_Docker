@@ -13,6 +13,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @SuppressWarnings("ALL")
@@ -105,5 +106,11 @@ public class FlightService
 
         //        TypedQuery<Flight> query = em.createNamedQuery("Flight.findById", Flight.class);
         //        Flight flight = query.setParameter("filghtId", 2).getSingleResult();
+    }
+
+    public Response deleteFlightNoImpl(Integer flightId)
+    {
+
+        return null;
     }
 }
