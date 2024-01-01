@@ -132,4 +132,25 @@ public class PassengerService
         return p;
     }
 
+    public Passenger updatePassenger2(Integer passengerId, Passenger pUpdated)
+    {
+        pUpdated.setId(passengerId);
+
+        Passenger pCheckExist = em.find(Passenger.class, passengerId);
+
+        if (pCheckExist == null)
+        {
+            return null;
+        }
+
+        em.merge(pUpdated);
+        //pUpdated = simple Passenger object, with no Id, we set the Id
+        //pUpdated is now merged into the persistence context and starts being managed by EM -> to the object, managed by EM
+        // <- they have the same Id <-updates the original object
+
+        return pUpdated;
+    }
+
+
+
 }
