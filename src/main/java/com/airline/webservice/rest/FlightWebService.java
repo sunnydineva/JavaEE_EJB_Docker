@@ -8,6 +8,7 @@ import com.airline.service.FlightService;
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Path("/flights")
+@Transactional
 public class FlightWebService {
 
     @PersistenceContext(unitName = "airline_persistence_unit")
