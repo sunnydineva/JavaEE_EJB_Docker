@@ -20,7 +20,7 @@ b) docker cp target/ejb.war $(docker ps -qf "name=app-sd"):/opt/jboss/wildfly/st
 
 ## Use Airline App
 Go to: http://localhost:28080/ejb/airLineForms
-"29990:9990"  # http://0.0.0.0:29990/management admin admin
+Management of Wildfly:  http://0.0.0.0:29990/management admin admin
 
 
 ## Start only DB ir App
