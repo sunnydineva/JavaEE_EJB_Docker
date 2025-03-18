@@ -24,21 +24,18 @@ Management of Wildfly:  http://0.0.0.0:29990/management admin admin
 
 
 ## Start only DB ir App
-1. Стартиране на MySQL контейнер
-#  docker run -p 11306:113306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=db-sd mysql:8.0.0
+run only mySQL container:
+docker run -p 11306:113306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=db-sd mysql:8.0.0
 
-# run only mySQL container:
-#  docker run -p 11306:113306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=db-sd mysql:8.0.0
+create image of javaee:SNAPSHOT-1.0.0 - if we use image, instead of build in services:
+       services:
+         app-sd:
+         image: javaee:SNAPSHOT-1.0.0
+  sunny@sunny:~/ss/projects/JavaEE_EnterpriseJavaBeans$ docker build -t javaee:SNAPSHOT-1.0.0 .
+  sunny@sunny:~/ss/projects/JavaEE_EnterpriseJavaBeans$ docker build --no-cache -t javaee:SNAPSHOT-1.0.0 .
 
-# create image of javaee:SNAPSHOT-1.0.0 - if we use image, instead of build in services:
-#       services:
-#          app-sd:
-#          image: javaee:SNAPSHOT-1.0.0
-#  sunny@sunny:~/ss/projects/JavaEE_EnterpriseJavaBeans$ docker build -t javaee:SNAPSHOT-1.0.0 .
-#  sunny@sunny:~/ss/projects/JavaEE_EnterpriseJavaBeans$ docker build --no-cache -t javaee:SNAPSHOT-1.0.0 .
-
-# run all containers (mySQL & app-sd) defined in docker-compose.yml:
-#  sunny@sunny:~/ss/projects/JavaEE_EnterpriseJavaBeans$ docker compose up
+ run all containers (mySQL & app-sd) defined in docker-compose.yml:
+  sunny@sunny:~/ss/projects/JavaEE_EnterpriseJavaBeans$ docker compose up
 
 
 
